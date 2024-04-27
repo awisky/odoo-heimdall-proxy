@@ -1,0 +1,176 @@
+version: "3.8"
+services:
+  db-master:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+    volumes:
+      - master-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  db-replica:
+    image: postgres:latest
+    depends_on:
+      - db-master
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: odoo
+      POSTGRES_REPLICATION_MODE: replica
+      POSTGRES_REPLICATION_USER: odoo
+      POSTGRES_REPLICATION_PASSWORD: odoo
+    volumes:
+      - replica-data:/var/lib/postgresql/data
+    command: >
+      bash -c "
+        while ! pg_isready -h db-master -p 5432 -U odoo; do
+          echo 'Waiting for master to be ready...'
+          sleep 2
+        done;
+        pg_basebackup -h db-master -D /var/lib/postgresql/data -U odoo -vP -W --create-slot --slot=replica_slot --write-recovery-conf;
+        exec docker-entrypoint.sh postgres
+      "
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+  redis:
+    image: redis:6.2-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass eiSa7so4Oochae4B #--loglevel debug
+    volumes:
+      - redis-data:/data
+  web:
+    build:
+      context: .
+    environment:
+      - DB_PORT_5432_TCP_ADDR=heimdallproxy1
+      - DB_PORT_5432_TCP_PORT=5432
+      - DB_ENV_POSTGRES_USER=odoo
+      - DB_ENV_POSTGRES_PASSWORD=odoo
+      - PGHOST=heimdallproxy1
+      - PGPORT=5432
+      - PGUSER=odoo
+      - PGPASSWORD=odoo
+      - PGDATABASE=odoo-17
+      - ODOO_USER_ADMIN_DEFAULT_PASSWORD=admin
+      - ODOO_DBMASTER_PASSWORD=admin
+      - ODOO_CONF_WORKERS=4
+      - ODOO_QUEUE_JOB_PORT=8069
+      - ODOO_DBNAME=odoo-17
+      - SHELL=/bin/bash
+      - ODOO_SESSION_REDIS=true
+      - ODOO_SESSION_REDIS_HOST=redis
+      - ODOO_SESSION_REDIS_PASSWORD=eiSa7so4Oochae4B
+      - ODOO_SESSION_REDIS_PORT=6379
+    #  - DEBUG=true to debug with VS Code in your local
+    #  - TEST=true to execute the units tests in your local
+    depends_on:
+      - heimdallproxy1
+      - redis
+    ports:
+      #  - "8069:8069"
+      #  - "8072:8072"
+      - "8888:8888"
+    tty: true
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./:/mnt/odoo
+    restart: unless-stopped # run as a service
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - web
+    command: >
+      /bin/bash -c "echo $$'
+      upstream odoo {
+        server web:8069;
+      }
+      upstream odoo-chat {
+        server web:8072;
+      }
+
+      server {
+        listen 80;
+        client_max_body_size 0;
+
+        access_log /var/log/nginx/odoo-access.log;
+        error_log /var/log/nginx/odoo-error.log;
+
+        proxy_set_header Host $$host:$$server_port;
+        proxy_set_header X-Real-IP $$remote_addr;
+        proxy_set_header X-Forwarded-For $$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $$scheme;
+        proxy_set_header X-Forwarded-Host $$host:$$server_port;
+        proxy_set_header X-Forwarded-Server $$host;
+
+        location / {
+          proxy_redirect off;
+          proxy_pass http://odoo;
+        }
+
+        location /longpolling {
+          proxy_pass http://odoo-chat;
+        }
+
+        location ~* /web/static/ {
+          proxy_cache_valid 200 90m;
+          proxy_buffering on;
+          expires 864000;
+          proxy_pass http://odoo;
+        }
+
+      }' > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    ports:
+      - "80:80"
+    restart: unless-stopped
+  heimdallmanager:
+    build:
+      context: ./heimdall
+      dockerfile: Dockerfile
+    depends_on:
+      - db-master
+    environment:
+      - hduser=admin
+      - hdpassword=admin
+      - vdbName=Mountrix-vdb
+    ports:
+      - "8087:8087"
+    tty: true
+    volumes:
+      - heimdall-cache:/opt/heimdall/config
+
+    restart: unless-stopped
+
+  heimdallproxy1:
+    build:
+      context: ./heimdall
+      dockerfile: Dockerfile
+    depends_on:
+      - heimdallmanager
+    environment:
+      - hduser=admin
+      - hdpassword=admin
+      - hdRole=proxy
+      - vdbName=Mountrix-vdb
+      - configcache=/opt/heimdall/configcache
+    ports:
+      - "5434:5432"
+    tty: true
+    volumes:
+      - heimdall-cache:/opt/heimdall/configcache
+    restart: unless-stopped
+volumes:
+  odoo-web-data:
+  redis-data:
+  heimdall-cache:
+  master-data:
+    name: odoo-heimdall-master-data
+  replica-data:
+    name: odoo-heimdall-replica-data

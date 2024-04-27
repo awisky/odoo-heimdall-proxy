@@ -1,0 +1,279 @@
+{"vdbs":[
+{
+  "inProduction": false,
+  "acCaseSensitiveFields": false,
+  "acCaseSensitiveTables": false,
+  "accessType": "postgres",
+  "cacheEnabled": true,
+  "pciHipaaCache": false,
+  "cacheSize": 5.0E7,
+  "cacheSoftValues": true,
+  "cacheMaxExpiry": 10.0,
+  "cacheObjectCount": 50000.0,
+  "cacheObjectSize": 4000000.0,
+  "preCacheTracking": true,
+  "cacheSizeRate": 1.0,
+  "cacheType": "redis",
+  "clusterCacheManager": false,
+  "customKey": false,
+  "debugMode": false,
+  "gridPassword": "eiSa7so4Oochae4B",
+  "gridPort": 6379.0,
+  "databaseNumber": 0.0,
+  "gridServer": "redis",
+  "id": 1.714263662452E12,
+  "jdbcClass": "com.heimdalldata.HeimdallDriver",
+  "jdbcUrl": "jdbc:heimdall://\u003cHeimdall Server IP:port\u003e/Mountrix-vdb?hduser\u003d\u003cuser\u003e\u0026hdpassword\u003d\u003cpassword\u003e",
+  "excludeKeyCatalog": false,
+  "excludeKeySchema": false,
+  "excludeKeySqlComments": false,
+  "excludeKeyUser": false,
+  "excludeKeyVdb": false,
+  "localCacheEnable": true,
+  "localhostOnly": false,
+  "logConnections": false,
+  "loggingEnabled": true,
+  "logMethods": false,
+  "liteDebug": false,
+  "logResultSetMethods": false,
+  "logSql": false,
+  "mgmtProxyEnable": false,
+  "runAsService": true,
+  "tlsEnable": true,
+  "tlsRequired": false,
+  "tlsLegacy": false,
+  "kerberosAuthEnabled": false,
+  "ldapAuthEnabled": false,
+  "delayedTransaction": true,
+  "paranoia": false,
+  "multiplex": true,
+  "multiplexTimeout": 0.0,
+  "healthCheckTokenAuthorizationEnabled": false,
+  "spModeEnabled": false,
+  "proxyBalanceMode": "load",
+  "redirectBy": "redirectPrivateIp",
+  "awsAZRedirect": false,
+  "customLdapConfig": false,
+  "synchAuthentication": false,
+  "tokenizedAuthentication": false,
+  "proxyauthEnabled": false,
+  "authMode": "passthrough",
+  "proxyAddress": "0.0.0.0",
+  "proxyPort": "5432",
+  "xmx": 600.0,
+  "revalidateCache": false,
+  "shipConsoleLogs": true,
+  "writeLogsToFile": true,
+  "logAuthentications": false,
+  "sqlDrivenAuthEnabled": false,
+  "authorizationQuery": "select * from heimdall.pg_hba where enabled \u003d true order by line_number asc",
+  "certificateAlias": "global_use_certificate",
+  "certificate": "-----BEGIN CERTIFICATE-----\nMIICpzCCAY+gAwIBAgIJANVlc3oXuP+3MA0GCSqGSIb3DQEBCwUAMBMxETAPBgNVBAMMCEhlaW1kYWxsMB4XDTI0MDQyNzAwMTc1MVoXDTM0MDQyNzAwMTc1MVowEzERMA8GA1UEAwwISGVpbWRhbGwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCtRkTM1d0IhY1qM0whHbNbPWzhxSBNd3O8e9unvhQtPSInweQBn6t+vEXA3DNKVdSEIpQr5Pe3vmQ5r6m0VNyDKG8n1cb8DAQnoYd22hF0h216JbT2t4fdP1r5o73Yni9zIHEJ06jIrHHvymyn6dfRUunT5kcnP8xm43qDmFHp+DolpAgcTWwMurz3d5fl/ZmQkFWjHhe4etuWpP7xs9dBNrDYaW+zLcxt/AsQ6ZRsc+B8WIKNxpptMQARJXS48vc5nIQOFNuuvcs+c6k0tw6UZEtgc76p37sjfp+6BhJIM73GOFywZkYf7JHlqU+pUfcyPD5CqTC2v+H+dZvsFKrbAgMBAAEwDQYJKoZIhvcNAQELBQADggEBAJ8Vr/bo+iWvb0+DwfCBLa25A6smqcjJZ6KZGk1FE0SAPx8OpAumma30KTa8jg7pRccmkeAOuTs7gfOGgX0eQvflfap4RdZJJVwRUmdLmLnqEag32Rkw6A87iOTbSLdeUSa1TmRyrKmYrFVmYuVfGW5Kj/+iCIkB5/Twijvoeues/9ttpg1+By+leuQPSLERARY0U/oY1nGedjn+45h+HsJuQqgq7tfycw1KOZESUybOiVnfsnciRTaaR6i7pfuDbLQhw4G9jnBkZqE3fQ+DXw7aCIw/phfNv45nu1Y3wE8jj2GSc3IOm1akAMInNtU7CL5SCILCymwh6NupwHVOG5M\u003d\n-----END CERTIFICATE-----",
+  "privateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCtRkTM1d0IhY1qM0whHbNbPWzhxSBNd3O8e9unvhQtPSInweQBn6t+vEXA3DNKVdSEIpQr5Pe3vmQ5r6m0VNyDKG8n1cb8DAQnoYd22hF0h216JbT2t4fdP1r5o73Yni9zIHEJ06jIrHHvymyn6dfRUunT5kcnP8xm43qDmFHp+DolpAgcTWwMurz3d5fl/ZmQkFWjHhe4etuWpP7xs9dBNrDYaW+zLcxt/AsQ6ZRsc+B8WIKNxpptMQARJXS48vc5nIQOFNuuvcs+c6k0tw6UZEtgc76p37sjfp+6BhJIM73GOFywZkYf7JHlqU+pUfcyPD5CqTC2v+H+dZvsFKrbAgMBAAECggEASC0kDXrsNleDP4CcrpKzmkbs6uJ1AS/HyvSA28+mke2MI6l1M2PySLleCObwin9UJbJNrDcVJLmvAAR3GUHcFNor6xj2aRkMRgHX7p8JdFPRO3cneTmb44I3gBM/ylKiCz+xNlmvTd/fGfZk6lDS8EOsWPLsIqJFn3oUF2rEfEOVIel/ZDgT7CyrVKYbjAnBIYJYgD/w0bl88JgDJvSlSBq0wFzCxokqs0C6RBAY0zgfu0yFVFhxxNDs+HHOUZiOobifqQJAbICNL1nmYWRwF7wdBIXOnnrFlsbgfaSN0WQCo1h/w1QH3QTdGDXh64qBbIE/KW5VcYLe/WjH/fnQ+QKBgQDel6OaPu8bo9Uxd9fllAU4RosnOmj6ELVCxvBSu/asgA1FzamRIe/O4WiW2NuxDLl8Nh+qUK3G+YwQXV4A7oY2/nFuJyb8v0LOXlebxgKksmXa60OoNHUbSeCy2Y/E7DrdciYrBbeS4gRRgFzLUXUtQJxXnfRHfIeoA7+gyTqLdwKBgQDHR8HePVNI4Iy5gJEczUYeeJXIxyxyEQrTZIUVZi0iO4yk64uY4R8R9dX+KBJEwff5nldfUyCNVS3hQdozTmzvsrZDyk85sctpzpKWmKl3IbtTbZMpPUdAV9XhDl1+eG9Vktf6BX9Sk6PeaHpmhxpc2o8IoYXkjKfL/u7VdYbsvQKBgHxSvbHdDLenXd/vS8qSTggMfpQ+b3ub8WGGs5vCGBhovQELyXWiOsqV41C9dpcAwGi74hvCTA0iPDS3sVVb4+K7YqdffssUGEAjOVNr2PYcHf+T/4nnIrFHJhU+pqoaNxaQNvk4jDuhuT+8LhfxOz03JRtawaFb0Hjq/xDS07wpAoGAdvWdA1+0YeK53tqixYC8hOAS+gH7xDPsNHjjAP03oCHQOXrqoF5yv7PzBH9DOIxZzUb6fUsQOY5JjxhSeyIr4YLbTuhsFtLNzOGlnASR1S3rt0fH+2w7JmvIn0qGAUM/ouO/zd6OPOspfVD9EEtCL3/AtrRFS0OzvxD13bME0jkCgYEAjFcHqvnHPokQDIXuMzkKbsm894iGyHi3Fsk4GJszJrr3s8uS6Tp7vy7yFREWPF8OTlHN0Xk7H5p7qYANPz/6QbHgyIcbmMJWk9pvSAVR0Mf40QwvJEqIwyXA7k/4k6A7T17HgmCRIA5NAWhZ9gAA5x4i8RwfJuQJtWPF9wKTEys\u003d\n-----END PRIVATE KEY-----",
+  "privateKeyAlgorithm": "RSA",
+  "accessKey": "EmggBc1eJfmjkAhf",
+  "secretKey": "m80IdoASKwKu51RS",
+  "useSsl": false,
+  "verifyPeer": false,
+  "jmxHostname": "${hostname}",
+  "jmxPort": 0.0,
+  "dnsPort": 0.0,
+  "userCaseSensitive": false,
+  "enabled": true,
+  "file": "config/Mountrix-vdb_1.conf",
+  "name": "Mountrix-vdb",
+  "version": 1.0,
+  "dataSources": [
+    {
+      "enabled": true,
+      "file": "config/Mountrix-source_1.conf",
+      "name": "Mountrix-source",
+      "version": 1
+    }
+  ],
+  "rules": [
+    {
+      "enabled": true,
+      "file": "config/Mountrix-rules_1.conf",
+      "name": "Mountrix-rules",
+      "version": 1
+    }
+  ],
+  "properties": [
+    {
+      "key": "nativePrepareHandleId",
+      "value": "true"
+    }
+  ],
+  "users": [
+    {
+      "user": "odoo",
+      "password": "odoo"
+    }
+  ],
+  "pinnedClients": [],
+  "modules": [
+    "modules/heimdallloadbalancer-1.0-23.11.06.1.jar",
+    "modules/heimdallextractplan-1.0-23.11.06.1.jar",
+    "modules/heimdallfirewall-1.0-23.11.06.1.jar",
+    "modules/heimdallforward-1.0-23.11.06.1.jar",
+    "modules/heimdallasync-1.0-23.11.06.1.jar",
+    "modules/heimdallredis-6.2.5-23.11.06.1.jar",
+    "modules/heimdallnotification-23.11.06.1.jar",
+    "modules/heimdalltrigger-1.0-23.11.06.1.jar",
+    "modules/heimdallhazelcast-4.2.8-23.11.06.1.jar",
+    "modules/heimdallredshift-1.0-23.11.06.1.jar",
+    "modules/heimdallpostgres-1.0-23.11.06.1.jar",
+    "modules/heimdallmysql-1.5-23.11.06.1.jar",
+    "modules/heimdallpgsqlprotocol-1.0-23.11.06.1.jar",
+    "modules/heimdallsqlserver-1.0-23.11.06.1.jar"
+  ],
+  "cloudServices": {
+    "cloudLogging": false,
+    "cloudMetrics": false
+  }
+}]
+,"sources":[
+{
+  "url": "jdbc:postgresql://db-master:5432/${catalog}",
+  "driverConfig": {
+    "enabled": true,
+    "file": "config/PostgreSQL_1.conf",
+    "name": "PostgreSQL",
+    "version": 1
+  },
+  "driverClass": "org.postgresql.Driver",
+  "driverUrl": "/drivers/PostgreSQL/postgresql-42.4.1-streaming.jar",
+  "dataSourceClass": "org.postgresql.ds.PGSimpleDataSource",
+  "properties": {
+    "sslmode": "disable",
+    "password": "odoo",
+    "testQuery": "SELECT 1",
+    "extraFloatDigits": "false",
+    "defaultCatalog": "postgres",
+    "user": "odoo",
+    "preferQueryMode": "extended",
+    "url": "jdbc:postgresql://db-master:5432/${catalog}"
+  },
+  "usepool": true,
+  "poolProperties": {},
+  "servers": [
+    {
+      "name": "Primary",
+      "url": "jdbc:postgresql://db-master:5432/${catalog}",
+      "enabled": true,
+      "writeable": false,
+      "weight": 1,
+      "readWeight": 0,
+      "writeWeight": 0,
+      "active": true,
+      "failed": false
+    },
+    {
+      "name": "Replica1",
+      "url": "jdbc:postgresql://db-replica:5432/${catalog}",
+      "enabled": true,
+      "writeable": true,
+      "weight": 0,
+      "readWeight": 0,
+      "writeWeight": 0,
+      "active": true,
+      "failed": false
+    }
+  ],
+  "useLoadBalancing": true,
+  "useResponseMetrics": false,
+  "trackClusterChanges": false,
+  "useAwsSecret": false,
+  "desiredWriteCapacity": 1,
+  "desiredReadCapacity": 10,
+  "trackReplicationLags": false,
+  "timeWindow": 10000,
+  "alertThreshold": 0,
+  "responseMetricMultiplier": 2,
+  "holdTime": 30000,
+  "obscure": {
+    "secretKey": "Odrv3jRI9sliFSZUFXwbynSf68Llbi"
+  },
+  "lastDatabaseLookup": 0,
+  "enabled": true,
+  "file": "config/Mountrix-source_1.conf",
+  "name": "Mountrix-source",
+  "version": 1
+}]
+,"drivers":[
+{
+  "driverVersion": "42.4.1-streaming",
+  "exampleUrl": "jdbc:postgresql:[\u003c//host\u003e[:\u003c5432\u003e/]]\u003cdatabase\u003e",
+  "writerUrl": "jdbc:postgresql://${writer}/${database}",
+  "readerUrl": "jdbc:postgresql://${replica}/${database}",
+  "websiteUrl": "http://jdbc.postgresql.org",
+  "notes": "JDBC 4.0, can also be used for PG compatible databases, such as Greenplum",
+  "jdbcClass": "org.postgresql.Driver",
+  "dataSourceClass": "org.postgresql.ds.PGSimpleDataSource",
+  "xaDataSourceClass": "org.postgresql.xa.PGXADataSource",
+  "uploadedDrivers": [
+    "/drivers/PostgreSQL/postgresql-42.4.1-streaming.jar"
+  ],
+  "autoUpdate": true,
+  "enabled": true,
+  "file": "config/PostgreSQL_1.conf",
+  "name": "PostgreSQL",
+  "version": 1
+}]
+,"rules":[
+{
+  "rules": [
+    {
+      "enabled": true,
+      "type": "L",
+      "patterns": [
+        ""
+      ],
+      "rowPatterns": [
+        ""
+      ],
+      "operator": "AND",
+      "columnNameOperator": "AND",
+      "intrans": true,
+      "properties": {}
+    },
+    {
+      "enabled": true,
+      "type": "C",
+      "patterns": [
+        ""
+      ],
+      "rowPatterns": [
+        ""
+      ],
+      "operator": "AND",
+      "columnNameOperator": "AND",
+      "intrans": false,
+      "properties": {
+        "ttl": "5*60000"
+      }
+    },
+    {
+      "enabled": true,
+      "type": "N",
+      "patterns": [
+        "SET TRANSACTION ISOLATION LEVEL REPEATABLE READ"
+      ],
+      "rowPatterns": [
+        ""
+      ],
+      "operator": "AND",
+      "columnNameOperator": "AND",
+      "intrans": false,
+      "properties": {
+        "responseInt": "1"
+      }
+    }
+  ],
+  "responseRules": [],
+  "enabled": true,
+  "file": "config/Mountrix-rules_1.conf",
+  "name": "Mountrix-rules",
+  "version": 1
+}]}

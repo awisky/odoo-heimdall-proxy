@@ -1,0 +1,75 @@
+#
+# Copyright (c) 2022 Patagon IO SAS. All rights reserved.
+#
+
+[options]
+addons_path = {{ MODULES or "/mnt/mountrix/addons/," }}/mnt/odoo/addons,/mnt/odoo/addons_customer,/mnt/odoo/addons_external
+admin_passwd = {{ ODOO_DBMASTER_PASSWORD or "Noh3quoun9wahgoo6eix2Iethea3asho" }}
+csv_internal_sep = ,
+data_dir = {{ ODOO_DATA_DIR or "/var/lib/odoo" }}
+db_host = {{ DB_PORT_5432_TCP_ADDR or "db" }}
+db_maxconn = {{ ODOO_CONF_DB_MAXCONN or 64 }}
+db_name = {{ ODOO_DBNAME or "" }}
+db_password = {{ DB_ENV_POSTGRES_PASSWORD or "odoo" }}
+db_port = {{ DB_PORT_5432_TCP_PORT or 5432 }}
+db_sslmode = prefer
+db_template = template0
+db_user = {{ DB_ENV_POSTGRES_USER or "odoo" }}
+dbfilter = {{ DB_FILTER or "" }}
+demo = {}
+email_from = {{ POSTFIX_SMTP_LOGIN or "False" }}
+geoip_database = /usr/share/GeoIP/GeoLite2-City.mmdb
+http_enable = {{ ODOO_CONF_HTTP_ENABLE or "True" }}
+http_interface =
+http_port = {{ ODOO_CONF_HTTP_PORT or "8069" }}
+import_partial = {{ ODOO_CONF_IMPORT_PARTIAL or "" }}
+limit_memory_hard = {{ ODOO_CONF_LIMIT_MEMORY_HARD or "2684354560" }}
+limit_memory_soft = {{ ODOO_CONF_LIMIT_MEMORY_SOFT or "2147483648" }}
+limit_request = {{ ODOO_CONF_LIMIT_REQUEST or "8192" }}
+limit_time_cpu = {{ ODOO_CONF_LIMIT_TIME_CPU or "4000" }}
+limit_time_real = {{ ODOO_CONF_LIMIT_TIME_REAL or "6000" }}
+limit_time_real_cron = {{ ODOO_CONF_LIMIT_TIME_REAL_CRON or "-1" }}
+list_db = {{ ODOO_CONF_LIST_DB or True }}
+log_db = {{ ODOO_CONF_LOG_DB or "False" }}
+log_db_level = {{ ODOO_CONF_LOG_DB_LEVEL or "warning" }}
+log_handler = {{ ODOO_CONF_LOG_HANDLER or ":INFO" }}
+log_level = {{ LOG_LEVEL or "info" }}
+logfile = None
+gevent_port = {{ ODOO_CONF_LONGPOLLING_PORT or "8072" }}
+max_cron_threads = {{ ODOO_CONF_MAX_CRON_THREADS or "0" }}
+osv_memory_age_limit = {{ ODOO_CONF_OSV_MEMORY_AGE_LIMIT or "False" }}
+osv_memory_count_limit = {{ ODOO_CONF_OSV_MEMORY_COUNT_LIMIT or "False" }}
+pg_path =
+pidfile = 
+proxy_mode = {{ ODOO_CONF_PROXY_MODE or "True" }}
+reportgz = False
+screencasts =
+screenshots = /tmp/odoo_tests
+server_wide_modules = {{ ODOO_CONF_SERVER_WIDE_MODULES or "base,web,session_redis,queue_job" }}
+smtp_password = {{ ODOO_CONF_SMTP_PASSWORD or "False" }}
+smtp_port = {{ ODOO_CONF_SMTP_PORT or "25" }}
+smtp_server = {{ ODOO_CONF_SMTP_SERVER or "smtp" }}
+smtp_ssl = {{ ODOO_CONF_SMTP_SSL or "False" }}
+smtp_user = {{ ODOO_CONF_SMTP_USER or "False" }}
+syslog = {% if DOCKER_LOG_TYPE == 'json' %}True{% else %}False{% endif %}
+test_enable = False
+test_file = False
+test_tags = None
+transient_age_limit = 1.0
+translate_modules = ['all']
+unaccent = False
+upgrade_path = {{ ODOO_CONF_UPGRADE_PATH or "" }}
+without_demo = {{ ODOO_WITHOUT_DEMO or "" }}
+workers = {{ ODOO_CONF_WORKERS or "0" }}
+running_env=default
+
+[queue_job]
+channels = {{ ODOO_QUEUE_JOB_CHANNELS or "root:2" }}
+
+[domain_alias]
+external_email_server_default = true
+alias_domain = {{ POSTFIX_SMTP_DOMAIN or "False" }}
+
+{% include '/etc/odoo.d/extra_incoming_mail.j2' ignore missing %}
+
+{% include '/etc/odoo_files.d/extra_odoo_conf.j2' ignore missing -%}
